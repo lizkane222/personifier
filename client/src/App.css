@@ -44,3 +44,17 @@ body {
 .card-span{
   font-size: 15px;
 }
+
+/* CODE EDITOR */
+
+.codeEditor{
+  /* margin: 0 0 0 50%; */
+  height: 50vh;
+  width: 50vw;
+  
+}
+
+.editor {
+  font-size: 25px;
+
+}
