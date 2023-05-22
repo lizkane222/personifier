@@ -49,6 +49,18 @@ const CseUserSchema = new mongoose.Schema({
     phoneNumber : {
         type: String,
         required: [false, "Phone number is not required"]
+    },
+    region : {
+        type: String,
+        required: [false, "region is not required"]
+    },
+    role : {
+        type: String,
+        required: [false, "role is not required"]
+    },
+    myUsers : {
+        type: [String],
+        required: [false, 'myUsers is not required']
     }
 }, {timestamps:true});
  

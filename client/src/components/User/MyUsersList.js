@@ -3,8 +3,8 @@ import axios from 'axios';
 import {Link, useParams} from 'react-router-dom';
 import Photo from '../Photos/Photo';
 
-const UserList = (props) => {
-    const {userList, setUserList} = props;
+const MyUsersList = (props) => {
+    const {userList, setUserList, currentCseUserSelection} = props;
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/allusers')
@@ -16,6 +16,16 @@ const UserList = (props) => {
                 console.log(err)
             })
     }, [])
+
+// THIS CSE USER's SAVED USERS : currentCseUserSelection.users
+// https://retool.com/blog/filtering-data-in-react-filter-map-and-for-loops/
+// render users : array 
+    // const renderCseUsersSavedUsers = () => {
+    //     let cseUser = currentCseUserSelection.id
+        
+    //     console.log(userList.filter(user.cseUsers.includes(cseUser)))
+
+    // }
 
     const deleteHandler = (id) => {
         axios.delete(`http://localhost:8000/api/deleteuser/${id}`)
@@ -48,4 +58,4 @@ const UserList = (props) => {
     )   
 }
 
-export default UserList;
+export default MyUsersList;

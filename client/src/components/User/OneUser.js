@@ -13,13 +13,13 @@ const OneUser = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/${id}`)
             .then((res) => {
-                console.log(res.data.user);
+                // console.log(res.data.user);
                 setUser(res.data.user)
             })
             .catch((err) => {
                 console.log(err);
             })
-    })
+    },[])
 
     const deleteHandler = (id) => {
         console.log(id)

@@ -19,7 +19,7 @@ const OneCseUser = (props) => {
             .catch((err) => {
                 console.log(err);
             })
-    })
+    },[])
 
     const deleteHandler = (id) => {
         console.log(id)
@@ -46,7 +46,7 @@ const OneCseUser = (props) => {
                 <h4>Workspace ID : {cseUser.workspaceId}</h4>
                 <h4>Preferred Pronouns : {cseUser.preferredPronouns}</h4>
                 <h4>Phone Number : {cseUser.phoneNumber}</h4>
-                <Link className='btn btn-secondary' to={`/viewCseUser/${cseUser._id}`}>View User</Link>
+                <Link className='btn btn-secondary' to={`/cseUser/${cseUser._id}`}>View User</Link>
                 <Link className='btn btn-primary' to={`/editCseUser/${cseUser._id}`}>Edit</Link>
                 <button className='btn btn-danger' onClick={() => deleteHandler(cseUser._id)}>Delete</button>
             </div>

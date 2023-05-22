@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link, Navigate, Router, useNavigate} from 'react-router-dom';
 import PhotosList from './PhotosList'
-import {ImageContext} from '../Views/ProfilesList.View';
+import {ImageContext} from '../Views/UserProfilesList.View';
 import {useParams} from 'react-router-dom';
 
 const NewPhoto = (data) => {

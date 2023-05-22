@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link, Navigate, Router, useNavigate} from 'react-router-dom';
-import ProfilesListView from '../Views/ProfilesList.View'
+import ProfilesListView from '../Views/UserProfilesList.View'
+import {ImageContext} from '../Views/UserProfilesList.View';
 import Photo from '../Photos/Photo'
 import useAxios from '../../hooks/useAxios';
 import NewPhoto from '../Photos/NewPhoto';
@@ -16,54 +17,51 @@ const CreateUser = (props) => {
         email: "",
         username: "",
         phoneNumber : "",
-        profilePhoto : ""
+        // profilePhoto : ""
     })
     
     const [errors, setErrors] = useState({})
     
-
+    // PROFILE PHOTO STATES
     const [profilePhotoOnUser, setProfilePhotoOnUser] = useState([])
+    const {profilePhotoId, setProfilePhotoId} = useState([])
+    const {profilePhoto, setProfilePhoto} = useState([])
 
+
+    // const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&query=profile%20photos&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`);
+    // pass to child component
+    // response={response} isLoading={isLoading} error={error} fetchData={fetchData}
+    
+    
 
     const changeHandler = (e) => {
         setUser({...user, [e.target.name]:e.target.value})
     }
     
+    // CREATE USER
     const submitHandler = (e) => {
         e.preventDefault();
-
-        // if (setProfilePhotoOnUser) { 
-        //     axios.post('http://localhost:8000/api/newprofilephoto', user.profilephoto)
-        //         .then((res) => {
-        //             console.log(res)
-        //         })
-        //         .catch((err) => {
-        //             console.log(err.response.data.errors);
-        //             setErrors(err.response.data.errors);
-        //         })
-        // }
-    
-
         axios.post('http://localhost:8000/api/newuser', user)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
+                // let id = res.id
                 // CLEAR OUT FORM DATA
                 setUser({
                     firstName: "",
                     lastName: "",
                     email: "",
                     username: "",
-                    phoneNumber : ""
+                    phoneNumber : "",
+                    // profilePhoto : ""
                 })
-                Navigate('/');
+                Navigate(`/user/${user._id}`);
             })
-            // creates user but results in error {Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'data')}
-            .catch((err) => {
-                // console.log(err.response.data.errors);
-                setErrors(err.response.data.errors);
-            })
+            .catch(err=>console.log(err))
+            // .catch((err) => {
+            //     console.log(err.response.data.errors);
+            //     setErrors(err.response.data.errors);
+            // })
     }
-    
 
     return(
         <div>
@@ -93,12 +91,25 @@ const CreateUser = (props) => {
                     <input type="text" name="phoneNumber" onChange={changeHandler} value={user.phoneNumber}/>
                     {errors.phoneNumber && (<p className='text-danger'>{errors.phoneNumber.message}</p>)}
                 </div>
-                {/* {profilePhotoOnUser ? <Photo profilePhotoOnUser={profilePhotoOnUser} setProfilePhotoOnUser={setProfilePhotoOnUser}/> :[]}
-                {profilePhotoOnUser ? <button className='btn btn-primary' onClick={setProfilePhotoOnUser=true}>Add Profile Photo</button> : []} */}
+                
+                {/* https://www.w3schools.com/tags/att_input_type_hidden.asp */}
+                <div>
+                    <label>Profile Photo</label>
+                    {/* <input type="text" name="phoneNumber" onChange={changeHandler} value={user.phoneNumber}/> */}
+                    {/* <input type="hidden" id="custId" name="custId" value="3487"/> */}
+                    <input type="text" name="userProfilePhoto" value=""/>
+                    {/* {errors.phoneNumber && (<p className='text-danger'>{errors.phoneNumber.message}</p>)} */}
+                </div>
+
+                {/* {profilePhotoOnUser ? <Photo profilePhotoOnUser={profilePhotoOnUser} setProfilePhotoOnUser={setProfilePhotoOnUser} profilePhotoId={profilePhotoId} setProfilePhotoId={setProfilePhotoId}
+                profilePhoto={profilePhoto} setProfilePhoto={setProfilePhoto}
+                /> :[]} */}
+
+                {/* {profilePhotoOnUser ? <button className='btn btn-primary' onClick={setProfilePhotoOnUser=true}>Add Profile Photo</button> : []} */}
                 
                 {/* <Link to={`/`}> */}
                     <button>Submit</button>
-                {/* <ProfilesListView/> */}
+                <ProfilesListView />
                 {/* </Link> */}
             </form>
         </div>

@@ -43,10 +43,23 @@ const EditUser = (props) => {
     // NEED TO CHANGE
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/deleteuser/${id}`, user)
+        axios.put(`http://localhost:8000/api/user/${id}`, user)
             .then((res) => {
                 console.log(res);
-                navigate('/');
+                navigate('/users');
+            })
+            .catch((err) => {
+                console.log(err.response.data.errors);
+                setErrors(err.response.data.errors);
+            })
+    }
+    // DELECT HANDLER
+    const deleteHandler = (e) => {
+        // e.preventDefault();
+        axios.delete(`http://localhost:8000/api/deleteuser/${id}`, user)
+            .then((res) => {
+                console.log(res);
+                navigate('/users');
             })
             .catch((err) => {
                 console.log(err.response.data.errors);

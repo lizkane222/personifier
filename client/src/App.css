@@ -1,19 +1,5 @@
-.App {
-  text-align: center;
-}
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
 body {
+  text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,9 +10,9 @@ body {
   color: white;
 }
 
-h1, div, h4 {
+/* h1, div, h4 {
   color: white;
-}
+} */
 
 .cseUserCard {
   padding: .25em;
@@ -37,17 +23,24 @@ h1, div, h4 {
   margin: 1em;
 }
 
-
-/* 
-.App-link {
-  color: #61dafb;
+.hover-slide{
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: #54b3d6;
+  margin: 0 -.25rem;
+  padding: 0 .25rem;
+  transition: color .350ms ease-in-out, box-shadow .3s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.hover-slide:hover{
+  box-shadow: inset 200px 0 0 0 #54b3d6;
+  color: white;
+}
+
+/* CSE USER CARDS */
+.cseUserCard{
+  
+}
+
+.card-span{
+  font-size: 15px;
+}

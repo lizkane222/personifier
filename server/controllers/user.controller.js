@@ -1,9 +1,9 @@
-const Users = require('../models/user.model');
+const User = require('../models/user.model');
 // https://mongoosejs.com/docs/queries.html
 
 // READ : ALL
 module.exports.findAllUsers = (req, res) => {
-    Users.find()
+    User.find()
         .then((allusers) => {
             res.json({ users: allusers })
         })
@@ -15,7 +15,7 @@ module.exports.findAllUsers = (req, res) => {
 // READ : ONE USER
 module.exports.findUser = (req, res) => {
     console.log(req.params)
-    Users.findOne({ _id: req.params.id })
+    User.findOne({ _id: req.params.id })
         .then(findOneUser => {
             res.json({ user: findOneUser })
         })
@@ -25,7 +25,7 @@ module.exports.findUser = (req, res) => {
 
 // CREATE : ONE USER
 module.exports.createUser = (req, res) => {
-    Users.create(req.body)
+    User.create(req.body)
         .then(newUser => {
             res.json({ newuser: newUser })
         })
@@ -36,7 +36,7 @@ module.exports.createUser = (req, res) => {
 // UPDATE : ONE USER
 module.exports.updateUser = (req, res) => {
     console.log(req.params)
-    Users.findOneAndUpdate(
+    User.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
         { new: true, runValidators: true }
@@ -51,7 +51,7 @@ module.exports.updateUser = (req, res) => {
  
 // DELETE : ONE USER
 module.exports.deleteUser = (req, res) => {
-    Users.deleteOne({ _id: req.params.id })
+    User.deleteOne({ _id: req.params.id })
         .then(result => {
             res.json({ result: result })
         })

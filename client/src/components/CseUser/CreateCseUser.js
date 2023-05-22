@@ -42,7 +42,7 @@ const CreateCseUser = (props) => {
                     preferredPronouns: "",
                     phoneNumber : ""
                 })
-                Navigate('/');
+                Navigate('/cseusers/');
             })
             .catch((err) => {
                 console.log(err.response.data.errors);

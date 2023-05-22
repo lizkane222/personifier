@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
- 
+const Schema = mongoose.Schema
+
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -20,28 +21,36 @@ const UserSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        required: [true, "Username is required"],
+        required: [false, "Username is required"],
         minlength: [5, "Username must be at least 10 characters long"]
     },
     phoneNumber : {
         type: String,
         required: [false, "Phone number is not required"]
     },
+    profilePhoto : {
+        type: String,
+        required: [false, "Profile Photo is not required"]
+    },
     anonymousId: {
-        type: Object,
-        required: [false]
+        type: [Schema.Types.Mixed],
+        required: [false, 'anonymousId is not required']
     },
     userId: {
         type: String,
-        required: [false]
+        required: [false, 'userId is not required']
     },
     profilePhoto : {
         type: String,
-        required: [false]
+        required: [false, 'profilePhoto is not required']
     },
     traits: {
-        type: Object,
-        required: [false]
+        type: [Schema.Types.Mixed],
+        required: [false, 'traits is not required']
+    },
+    cseUsers : {
+        type: [String],
+        required: [false, 'cseUsers is not required']
     }
 }, {timestamps:true});
  

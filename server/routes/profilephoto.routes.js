@@ -1,9 +1,9 @@
 const ProfilePhotoController = require('../controllers/profilephoto.controller');
  
 module.exports = app => {
-    app.get('/api/allprofilephotos', UserController.findAllUsers);
-    app.get('/api/profilephoto/:id', UserController.findUser);
-    app.post('/api/newprofilephoto', UserController.createUser);
-    app.put('/api/profilephoto/:id', UserController.updateUser);
-    app.delete('/api/deleteprofilephoto/:id', UserController.deleteUser);
+    app.get('/api/allprofilephotos', ProfilePhotoController.findAllProfilePhotos);
+    app.get('/api/profilephoto/:id', ProfilePhotoController.findProfilePhoto);
+    app.post('/api/newprofilephoto', ProfilePhotoController.createProfilePhoto);
+    app.put('/api/profilephoto/:id', ProfilePhotoController.updateProfilePhoto);
+    app.delete('/api/deleteprofilephoto/:id', ProfilePhotoController.deleteProfilePhoto);
 }

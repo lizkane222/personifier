@@ -7,11 +7,11 @@ const Nav = () => {
     return(
         <div className='d-inline-flex justify-content-space-evenly' id='nav'>
         {/* <div  p-3 bg-secondary'> */}
-            <Link to={'/'}>Catfish Accordion</Link>
+            <Link to={'/'}>Personifier</Link>
             <Link to={'/cseUsers/'}>CSEs</Link>
             <Link to={'/createCSEUser/form'}>NEW CSE</Link>
-            <Link to={'/createUser/form'}>NEW User</Link>
             <Link to={'/users'}>Users</Link>
+            <Link to={'/createUser/form'}>NEW User</Link>
             <Link to={'/search/profilephotos/db/'}>ProPho DB</Link>
             <Link to={'/search/profilephotos/search/'}>ProPho Search</Link>
             <Link to={'/userworkshop/'}>User Workshop</Link>

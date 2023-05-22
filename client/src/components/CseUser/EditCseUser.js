@@ -8,8 +8,10 @@ const EditCseUser = (props) => {
     const navigate = useNavigate();
     const {id} = useParams();
     console.log(id)
+
     const [cseUser, setCseUser] = useState({})
     console.log(cseUser, setCseUser)
+    
     // const [firstName, setFirstName] = useState();
     // const [lastName, setLastName] = useState();
     // const [slackName, setSlackName] = useState();
@@ -50,13 +52,27 @@ const EditCseUser = (props) => {
             })
     }, [id])
 
-    // NEED TO CHANGE
+    // UPDATE HANDLER
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8000/api/deletecseuser/${id}`, cseUser)
+        axios.put(`http://localhost:8000/api/cseuser/${id}`, cseUser)
             .then((res) => {
                 console.log(res);
-                navigate('/');
+                navigate('/cseUsers/');
+            })
+            .catch((err) => {
+                console.log(err.response.data.errors);
+                setErrors(err.response.data.errors);
+            })
+    }
+    
+    // DELETE HANDLER
+    const deleteHandler = (e) => {
+        // e.preventDefault();
+        axios.delete(`http://localhost:8000/api/deletecseuser/${id}`, cseUser)
+            .then((res) => {
+                console.log(res);
+                navigate('/cseUsers/');
             })
             .catch((err) => {
                 console.log(err.response.data.errors);
@@ -66,7 +82,7 @@ const EditCseUser = (props) => {
 
     return(
         <div >
-            <h2>Edit CSE User</h2>
+            <h2>Edit CSE User : {cseUser.firstName}</h2>
             <form onSubmit={submitHandler}>
                 <div>
                     <label>First Name</label>
@@ -142,6 +158,7 @@ const EditCseUser = (props) => {
                 </div>
                 <button>Save Changes</button>
             </form>
+                <button className='btn btn-danger' onClick={() => deleteHandler(cseUser._id)}>Delete</button>
        </div>
     )   
 }

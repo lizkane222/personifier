@@ -1,89 +1,87 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
  
 const ProfilePhotoSchema = new mongoose.Schema({
+    _id:{
+        type: String,
+        required: [true, "_id is required"]
+    },
     alt_description: {
         type: String,
         required: [false, "alt_description is required"]
     },
     blur_hash: {
         type: String,
-        required: [false, "Last name is required"],
-        minlength: [2, "Last name must be at least 2 characters long"],
-        maxlength: [30, "Last name must be at less than 30 characters long"]
+        required: [false, "blur_hash Last name is not required"],
     },
     color: {
-        type: Number,
-        required: [false, "Slack name is required"],
-        minlength: [4, "Slack name must be at least 4 characters long"]
+        type: String,
+        required: [false, "color is not required"],
     },
     height: {
         type: Number,
-        required: [false, "Segment email is required"],
-        minlength: [10, "Segment email must be at least 10 characters long"]
+        required: [false, "height is not required"],
     },
     id: {
         type: String,
-        required: [false, "Twilio email is required"],
-        minlength: [10, "Twilio email must be at least 10 characters long"]
+        required: [false, "id is not required"],
     },
     links: {
-        type: String,
-        required: [false, "CSE Team is required"],
-        minlength: [5, "CSE Team must be at least 5 characters long"]
+        type: [Schema.Types.Mixed],
+        required: [false, "links is not required"],
     },
     links_download: {
         type: String,
-        required: [false, "Workspace Slug is required"],
-        minlength: [2, "First name must be at least 2 characters long"]
+        required: [false, "links_download is not required"],
     },
     links_download_location: {
         type: String,
-        required: [false, "WorkspaceId is not required"]
+        required: [false, "links_download_location is not required"]
     },
     links_html: {
         type: String,
-        required: [false, "Preferred pronouns is not required"]
+        required: [false, "links_html is not required"]
     },
     links_self : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "links_self is not required"]
     },
     urls : {
-        type: Object,
-        required: [false, "Phone number is not required"]
+        type: [Schema.Types.Mixed],
+        required: [false, "urls is not required"]
     },
     urls_full : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_full is not required"]
     },
     urls_raw : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_raw is not required"]
     },
     urls_regular : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_regular is not required"]
     },
     urls_small : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_small is not required"]
     },
     urls_small_s3 : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_small_s3 is not required"]
     },
     urls_thumb : {
         type: String,
-        required: [false, "Phone number is not required"]
+        required: [false, "urls_thumb is not required"]
     },
     width : {
         type: Number,
-        required: [false, "Phone number is not required"]
+        required: [false, "width is not required"]
     },
     users : {
-        type: Object,
-        required: [false]
-    }
+        type: [String],
+        required: [false, 'user is not required']
+ }
 }, {timestamps:false});
  
 const ProfilePhoto = mongoose.model('ProfilePhoto', ProfilePhotoSchema);
