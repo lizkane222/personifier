@@ -1,6 +1,6 @@
 import React from 'react';
 // import AjsJsonConverter from '../UserWorkshop/AjsJsonConverter/AjsJsonConverter';
-import CodeEditor from '../UserWorkshop/CodeEditor/CodeEditor'
+import CodeEditor from '../UserWorkshop/TraitGenerator/CodeEditor/CodeEditor'
 
 const UserWorkshop = () => {
     

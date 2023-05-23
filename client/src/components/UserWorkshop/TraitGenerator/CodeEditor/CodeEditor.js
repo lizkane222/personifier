@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import Editor from '@monaco-editor/react';
-import '../../../App.css'
+import '../../../../App.css'
 
 // YOUTUBE VIDEO : https://youtu.be/WiacAGLd9so
 

@@ -22,18 +22,65 @@ const CreateUser = (props) => {
     const [errors, setErrors] = useState({})
     
     // PROFILE PHOTO STATES
-    const [profilePhoto, setProfilePhoto] = useState([])
-    const [photoReady, setPhotoReady] = useState(false);
-    const [newPhoto, setNewPhoto] = useState([])
+    const [profilePhoto, setProfilePhoto] = useState({
+        _id : "",
+        alt_description : "",
+        blur_hash : "",
+        color : 0,
+        height : 0,
+        id : "",
+        links : {},
+        links_download : "",
+        links_download_location : "",
+        links_html : "",
+        links_self : "",
+        urls : {},
+        urls_full : "",
+        urls_raw : "",
+        urls_regular : "",
+        urls_small : "",
+        urls_small_s3 : "",
+        urls_thumb : "",
+        width : 0,
+        users : {}
+    })
+    const [photoReady, setPhotoReady] = useState({
+        ready : false,
+        onDb : false,
+    });
 
     const changeHandler = (e) => {
+        // e.target.type == input ? 
         setUser({...user, [e.target.name]:e.target.value})
+        // : setUser({...user, .target.value})
     }
     
     // CREATE USER
     const submitHandler = (e) => {
         e.preventDefault();
+        // set photo on user
+        setUser({...user, profilePhoto:profilePhoto.id})
+        // let user_id
+        console.log('profilePhoto._id : ',profilePhoto._id)
         axios.post('http://localhost:8000/api/newuser', user)
+            .then((res) => {
+                // set user on photo
+                // user_id = res.data.newuser._id
+                // console.log('tempUser : ',user_id)
+                // console.log(res)
+                return setProfilePhoto({...profilePhoto, users:res.data.newuser._id})
+            })
+            .then((res) => {
+                console.log('2nd THEN profilePhoto : ', profilePhoto)
+                return axios.post('http://localhost:8000/api/newprofilephoto', profilePhoto)
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        // console.log(err.response.data.errors);
+                        setErrors(err.response.data.errors);
+                    })
+            })
             .then((res) => {
                 setUser({
                     firstName: "",
@@ -43,8 +90,8 @@ const CreateUser = (props) => {
                     phoneNumber : "",
                     profilePhoto : ""
                 })
-
-                Navigate(`/user/${user._id}`);
+                setPhotoReady(!photoReady)
+                Navigate(`/user/${res.data.newuser._id}`);
             })
             .catch(err=>console.log(err))
             // .catch((err) => {
@@ -116,11 +163,18 @@ const CreateUser = (props) => {
                 </div>
                 <div className='grid-rows-5 grid-cols-3 gap-.5 my-0 justify-center'>
                     <label className='row-start-1 col-start-1 text-left'>Profile Photo</label>
-                    <NewPhoto className='row-start-1 row-end-4 col-span-2' photoReady={photoReady} setPhotoReady={setPhotoReady} profilePhoto={profilePhoto} />
+                    <NewPhoto 
+                        className='row-start-1 row-end-4 col-span-2' 
+                        photoReady={photoReady} 
+                        setPhotoReady={setPhotoReady} 
+                        profilePhoto={profilePhoto} 
+                        setUser={setUser}    
+                        user={user}    
+                        />
                     <button className='row-start-5 col-start-3'>Create User</button>
                 </div>
             </form>
-                <UserProfilesListView profilePhoto={profilePhoto} setProfilePhoto={setProfilePhoto} />
+                <UserProfilesListView profilePhoto={profilePhoto} setProfilePhoto={setProfilePhoto} setPhotoReady={setPhotoReady} photoReady={photoReady}/>
         </div>
     )   
 }

@@ -29,7 +29,7 @@ const CreateCseUser = (props) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/newcseuser', cseUser)
             .then((res) => {
-                console.log(res);
+                console.log('cseUser res : ',res);
                 // CLEAR OUT FORM DATA
                 setCseUser({firstName: "",
                     lastName: "",

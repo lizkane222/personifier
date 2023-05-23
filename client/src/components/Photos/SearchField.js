@@ -2,27 +2,33 @@ import {useState, useContext} from 'react';
 import {ImageContext} from '../Views/UserProfilesList.View';
 import UNSPLASH_ACCESS_KEY from '../../.env';
 
-const SearchField = () => {
+const SearchField = (props) => {
+  const {newPage} = props
   const [searchValue, setSearchValue] = useState("");
   const { fetchData, setSearchPhoto } = useContext(ImageContext);
   const [pageCount, setPageCount] = useState(1)
+  // let newPage = Math.floor(Math.random() * 250)
 
   const handleInputChange = (e) => {
-    // console.log('e.target : ',e.target)
+    // console.log('searchValue : ',searchValue)
+    console.log('e.target : ',e.target)
     setSearchValue(e.target.value)
     // FEATURE HANDLE TAGS HERE
+    
     // e.target.type=='search' ? setSearchValue(e.target.value) : 
   }
   const handleButtonSearch = (results) => {
     console.log(results)
     // fetchData(`search/photos?page=1&query=${searchValue}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`)
-    setPageCount(pageCount+1)
-    fetchData(`search/photos?page=${pageCount}&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
+    // setPageCount(newPage)
+    // setPageCount(pageCount+1)
+    fetchData(`search/photos?page=${newPage}&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
   }
   const handleEnterSearch = e => {
     if(e.key === 'Enter') {
     //   fetchData(`search/photos?page=1&query=${searchValue}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`)
-      fetchData(`search/photos?page=1&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
+    setPageCount(newPage)  
+    fetchData(`search/photos?page=${newPage}&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
     //   setSearchValue("");
       setSearchPhoto(searchValue);
     }
@@ -32,10 +38,12 @@ const SearchField = () => {
     <div>
         <div className="flex w-screen justify-content-center justify-items-center">
             <input
+                id="searchBarInput"
                 className="bg-gray-50 border border-gray-300 text-sm max-w-9/12 w-1/5 indent-2 p-2.5 outline-none focus:border-blue-500 focus:ring-2 rounded-tl rounded-bl"
                 type="search"
+                // placeholder="profile photos"
                 placeholder="Search Anything..."
-                value={searchValue}
+                value={searchValue  || 'profile photos'}
                 onChange={handleInputChange}
                 onKeyDown={handleEnterSearch}
                 />

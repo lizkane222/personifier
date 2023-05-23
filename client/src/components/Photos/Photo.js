@@ -1,12 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {ImageContext} from '../Views/UserProfilesList.View';
-import axios from 'axios'
-import useAxios from '../../hooks/useAxios';
-import {useParams} from 'react-router-dom';
+// import {ImageContext} from '../Views/UserProfilesList.View';
+// import axios from 'axios'
+// import useAxios from '../../hooks/useAxios';
+// import {useParams} from 'react-router-dom';
 
 
 const Photo = (props) => {
-    const {data, keys, profilePhoto, setProfilePhoto} = props
+    const {data, keys, profilePhoto, setProfilePhoto, setPhotoReady, photoReady} = props
     
     // const [thisProfilePhoto, setThisProfilePhoto] = useState({
     //     alt_description : "",
@@ -32,6 +32,7 @@ const Photo = (props) => {
     
     const getProfilePhotoId = () => {
         setProfilePhoto({
+            _id : data.id,
             alt_description : data.alt_description,
             blur_hash : data.blur_hash,
             color : data.color,
@@ -52,14 +53,15 @@ const Photo = (props) => {
             width : data.width,
             users : data.users
         })
-        console.log('profilePhoto :',profilePhoto)
+        return setPhotoReady({ready:!photoReady.ready})
+        // console.log('profilePhoto :',profilePhoto)
         // profilePhotoInput
     }
-    console.log(profilePhoto)
+    // console.log(profilePhoto)
     
 
     return(
-        <div onClick={getProfilePhotoId} >
+        <div onClick={getProfilePhotoId} className='h-30 w-40 my-6'>
             {/* /photos/:id */}
             {/* CHANGE rounded-lg to rounded-full when on some pages */}
             
