@@ -58,13 +58,13 @@ function CodeEditor() {
 
   return (
     <div className='codeEditor'>
+      {/* <button onClick={(e) => setFileName(e.currentTarget.value)}> */}
       <div>
-      <button onClick={(e) => setFileName(e.currentTarget.value.toString())}>
-        {/* <button onClick={() => setFileName('TrackFormat.ajs')}> */}
+        <button onClick={() => setFileName('TrackFormat.ajs')}>
           TrackFormat.ajs  
         </button>
-        <button onClick={(e) => setFileName(e.currentTarget.value.toString)}>
-        {/* <button onClick={() => setFileName('IdentifyFormat.ajs')}> */}
+        {/* <button onClick={(e) => setFileName(e.currentTarget.value.toString)}> */}
+        <button onClick={() => setFileName('IdentifyFormat.ajs')}>
           IdentifyFormat.ajs
         </button>
         <button onClick={() => getEditorValue()}>

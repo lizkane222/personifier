@@ -7,14 +7,14 @@ import SearchPhotos from '../Photos/SearchPhotos';
 
 export const ImageContext = createContext();
 
-const UserProfilesListView = () => {
+const UserProfilesListView = (props) => {
 
     const [searchPhoto, setSearchPhoto] = useState('Profile Photos');
     
     // on more results change the page number in the query
     // const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&query=profile%20photos&client_id=${UNSPLASH_ACCESS_KEY}`);
     const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&per_page=20&query=profile%20photos&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`);
-    console.log(response)
+    // console.log(response)
 
     const value = {
         // response, isLoading, error, fetchData, setSearchPhoto
@@ -26,7 +26,7 @@ const UserProfilesListView = () => {
             <SearchPhotos>
                 <SearchField/>
             </SearchPhotos>
-            <PhotosList />
+            <PhotosList profilePhoto={props.profilePhoto} setProfilePhoto={props.setProfilePhoto} photoOnUser={props.photoOnUser}/>
         </ImageContext.Provider>
     );
 }

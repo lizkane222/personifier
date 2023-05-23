@@ -5,164 +5,83 @@ import PhotosList from './PhotosList'
 import {ImageContext} from '../Views/UserProfilesList.View';
 import {useParams} from 'react-router-dom';
 
-const NewPhoto = (data) => {
-    const [profilephoto] = data.profilephoto;
-    console.log(profilephoto)
-
-    const [profilePhoto, setProfilePhoto] = useState({
-        alt_description : "",
-        blur_hash : "",
-        color : 0,
-        height : 0,
-        id : "",
-        links : {},
-        links_download : "",
-        links_download_location : "",
-        links_html : "",
-        links_self : "",
-        urls : {},
-        urls_full : "",
-        urls_raw : "",
-        urls_regular : "",
-        urls_small : "",
-        urls_small_s3 : "",
-        urls_thumb : "",
-        width : 0,
-        users : {}
-    })
+const NewPhoto = (props) => {
+    const {profilePhoto, setProfilePhoto, photoReady, setPhotoReady} = props
+    // console.log('profilePhoto : ',profilePhoto)
+    // console.log('setProfilePhoto : ',setProfilePhoto)
+    // console.log('photoReady : ',photoReady)
+    // console.log('setPhotoReady : ',setPhotoReady)
     
     const [errors, setErrors] = useState({})
 
-    // REMOVE INSTANTIATION
-    // const changeHandler = (e) => {
-    //     setCseUser({...cseUser, [e.target.name]:e.target.value})
-    // }
-    
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/profilephoto/${profilePhoto.id}`)
+            .then((res) => {
+                if(!res.data.profilephoto)
+                createProfilePhoto()
+                setPhotoReady(true)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    })
 
     const createProfilePhoto = (e) => {
         e.preventDefault();
         
-        console.log(data.id)
+        console.log(profilePhoto.id)
+
         setProfilePhoto(profilePhoto({
-            alt_description : data.alt_description,
-            blur_hash : data.blur_hash,
-            color : data.color,
-            height : data.height,
-            id : data.id,
-            links : data.links,
-            links_download : data.links_download,
-            links_download_location : data.links_download_location,
-            links_html : data.links_html,
-            links_self : data.links_self,
-            urls : data.urls,
-            urls_full : data.urls_full,
-            urls_raw : data.urls_raw,
-            urls_regular : data.urls_regular,
-            urls_small : data.urls_small,
-            urls_small_s3 : data.urls_small_s3,
-            urls_thumb : data.urls_thumb,
-            width : data.width,
+            alt_description : profilePhoto.alt_description,
+            blur_hash : profilePhoto.blur_hash,
+            color : profilePhoto.color,
+            height : profilePhoto.height,
+            id : profilePhoto.id,
+            links : profilePhoto.links,
+            links_download : profilePhoto.links_download,
+            links_download_location : profilePhoto.links_download_location,
+            links_html : profilePhoto.links_html,
+            links_self : profilePhoto.links_self,
+            urls : profilePhoto.urls,
+            urls_full : profilePhoto.urls_full,
+            urls_raw : profilePhoto.urls_raw,
+            urls_regular : profilePhoto.urls_regular,
+            urls_small : profilePhoto.urls_small,
+            urls_small_s3 : profilePhoto.urls_small_s3,
+            urls_thumb : profilePhoto.urls_thumb,
+            width : profilePhoto.width,
             // async await add user's id to this object
             users : {}
         }))
-        console.log('67 profilePhoto : ',profilePhoto)
     
-        axios.post('http://localhost:8000/api/newprofilephoto', profilephoto)
-            .then((res) => {
-                console.log(res);
-                // profilephotosdb
-
-                // CLEAR OUT FORM DATA
-                // Navigate('/');
-            })
-            .catch((err) => {
-                console.log(err.response.data.errors);
-                setErrors(err.response.data.errors);
-            })
+        // axios.post('/api/newprofilephoto', profilePhoto)
+        //     .then((res) => {
+        //         console.log(res);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err.response.data.errors);
+        //         setErrors(err.response.data.errors);
+        //     })
     }
     
 
     return(
         <div>
-            <div className='profilephotosdb'>
-
-            </div>
-            <PhotosList createProfilePhoto={createProfilePhoto} addToDb={true}/>
-            {/* <form onSubmit={submitHandler}>
-                <div>
-                    <label>First Name</label>
-                    <input type="text" name="firstName" onChange={changeHandler} value={cseUser.firstName}/>
-                    {
-                        errors.firstName && (<p className='text-danger'>{errors.firstName.message}</p>)
-                    }
+            {photoReady ?
+                // <div className='w-20 h-20 rounded-full' onClick={setPhotoReady(!photoReady)}>
+                <div className='w-1/2 h-20 rounded-full grow-0 shrink-0' >
+                    {/* /photos/:id */}
+                    {/* CHANGE rounded-lg to rounded-full when on some pages */}
+                    <img  id={profilePhoto.id} className="h-60 w-60 object-cover rounded-full shadow-md m-0" src={profilePhoto.urls_small} alt={profilePhoto.alt_description} />
+                    {/* GET ALL USERS THAT USE THIS PROFILE PHOTO */}
+                    {/* <Link className='btn btn-secondary' to={`/user/${user._id}`}>View Users</Link> */}
                 </div>
-                <div>
-                    <label>Last Name</label>
-                    <input type="text" name="lastName" onChange={changeHandler} value={cseUser.lastName}/>
-                    {
-                        errors.lastName && (<p className='text-danger'>{errors.lastName.message}</p>)
-                    }
+                :
+                <div className='animate-pulse w-1/2 h-20 rounded-full grow-0 shrink-0'>
+                    <div className=" bg-gray-300 h-60 w-60 object-cover rounded-full shadow-md m-0">                        
+                    </div>
                 </div>
-                <div>
-                    <label>Slack Name</label>
-                    <input type="text" name="slackName" onChange={changeHandler} value={cseUser.slackName}/>
-                    {
-                        errors.slackName && (<p className='text-danger'>{errors.slackName.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Twilio Email</label>
-                    <input type="text" name="twilioEmail" onChange={changeHandler} value={cseUser.twilioEmail}/>
-                    {
-                        errors.twilioEmail && (<p className='text-danger'>{errors.twilioEmail.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Segment Email</label>
-                    <input type="text" name="segmentEmail" onChange={changeHandler} value={cseUser.segmentEmail}/>
-                    {
-                        errors.segmentEmail && (<p className='text-danger'>{errors.segmentEmail.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>CSE Team</label>
-                    <input type="text" name="cseTeam" onChange={changeHandler} value={cseUser.cseTeam}/>
-                    {
-                        errors.cseTeam && (<p className='text-danger'>{errors.cseTeam.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Workspace Slug</label>
-                    <input type="text" name="workspaceSlug" onChange={changeHandler} value={cseUser.workspaceSlug}/>
-                    {
-                        errors.workspaceSlug && (<p className='text-danger'>{errors.workspaceSlug.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Workspace ID</label>
-                    <input type="text" name="workspaceId" onChange={changeHandler} value={cseUser.workspaceId}/>
-                    {
-                        errors.workspaceId && (<p className='text-danger'>{errors.workspaceId.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Preferred Pronouns</label>
-                    <input type="text" name="preferredPronouns" onChange={changeHandler} value={cseUser.preferredPronouns}/>
-                    {
-                        errors.preferredPronouns && (<p className='text-danger'>{errors.preferredPronouns.message}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Phone Number</label>
-                    <input type="text" name="phoneNumber" onChange={changeHandler} value={cseUser.phoneNumber}/>
-                    {
-                        errors.phoneNumber && (<p className='text-danger'>{errors.phoneNumber.message}</p>)
-                    }
-                </div>
-                {/* <Link to={`/`}> */}
-                    {/* <button>Submit</button> */}
-                {/* </Link> */}
-            {/* </form>  */}
+            }
         </div>
     )   
 }

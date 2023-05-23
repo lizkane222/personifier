@@ -32,6 +32,7 @@ import UserWorkshop from './components/Views/UserWorkshop'
 function App() {
   const [cseUserList, setCseUserList] = useState([]);
   const [userList, setUserList] = useState([]);
+  // const [photoList, setPhotoList] = useState([]);
 
 
   return (
@@ -44,6 +45,8 @@ function App() {
         <Routes>
           {/* PERSONIFIER */}
           <Route path='/' element={<PersonifierHome cseUserList={cseUserList} setCseUserList={setCseUserList} userList={userList} setUserList={setUserList}/>}/>
+
+
           {/* CSE USER ROUTES */}
           <Route path='/cseUsers/' element={<CseUserList cseUserList={cseUserList} setCseUserList={setCseUserList}/>}/>
           <Route path='/createCSEUser/form' element={<CreateCseUser/>}/>
@@ -57,7 +60,7 @@ function App() {
           {/* <Route path='/viewUser/:id' element={<OneUser/>}/> */}
           <Route path='/editUser/:id' element={<EditUser/>}/>
 
-          <Route path='/search/profilephotos/db/' element={<NewPhoto/>}/>
+          {/* <Route path='/search/profilephotos/db/' element={<NewPhoto/>}/> */}
           <Route path='/search/profilephotos/search/' element={<UserProfilesListView/>}/>
           <Route path='/userworkshop/' element={<UserWorkshop/>}/>
 
