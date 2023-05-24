@@ -30,10 +30,11 @@ const UserList = (props) => {
     }
 
     return(
-        <div >
-            <div className='d-flex justify-content-around flex-wrap'>
+        < >
+            {/* <div className='d-flex justify-content-around flex-wrap'> */}
+            <div d-flex flex-wrap >
                 {userList.map((user) => (
-                        <div className='userCard' key={user._id}>
+                        <div className='text-neutral-600 bg-stone-100 w-1/3 justify-content-between m-6' key={user._id}>
                             <h2>Name : {user.firstName} {user.lastName}</h2>
                             <h4>Email : {user.email}</h4>
                             <h4>Username : {user.username}</h4>
@@ -44,7 +45,7 @@ const UserList = (props) => {
                         </div>
                     ))}
             </div>
-        </div>
+        </>
     )   
 }
 

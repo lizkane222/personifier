@@ -19,7 +19,7 @@ const PersonifierHome = (props) => {
                 <CseUserList cseUserList={props.cseUserList} setCseUserList={props.setCseUserList} handleCseUserSelect={handleCseUserSelect} currentCseUserSelection={currentCseUserSelection} setCurrentCseUserSelection={setCurrentCseUserSelection}/>
             </div>
             <div>
-                <MyUsersList userList={userList} setUserList={setUserList} currentCseUserSelection={currentCseUserSelection}/>
+                <MyUsersList userList={userList} setUserList={setUserList} currentCseUserSelection={currentCseUserSelection}/> 
             </div>
         </div>
     );

@@ -1,13 +1,18 @@
-body {
+*{
+  margin:0 auto;
   text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  /* background-color: #282c34; */
+}
+
+body {
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(30 27 75);
 }
 
 /* h1, div, h4 {
@@ -17,10 +22,6 @@ body {
 .cseUserCard {
   padding: .25em;
   margin: .25em;
-}
-
-#nav * {
-  margin: 1em;
 }
 
 .hover-slide{

@@ -56,9 +56,9 @@ const SearchField = (props) => {
         <div className='flex justify-content-center justify-items-center'>
           {/* FEATURE : ADD TAGS TO INCLUDE IN SEARCH : List Style Image @ https://tailwindcss.com/docs/list-style-image */}
             <a to="!" className='hover:focus cursor-pointer' >
-              <h3 className='text-center mt-6 text-2xl' onClick={handleButtonSearch}>{searchValue ? searchValue : 'profile photos'}</h3>
+              <h3 className='text-center mt-6 text-2xl text-white' onClick={handleButtonSearch}>{searchValue ? searchValue : 'profile photos'} : </h3>
             </a>
-            <button onClick={handleButtonSearch} className='hover-slide m-3 bg-none px-1 py-.5 text-white rounded pointer-events-auto' >more results</button>
+            <button onClick={handleButtonSearch} className='hover-slide bg-none px-1 py-.5 text-white rounded pointer-events-auto mr-6' >more results</button>
         </div>
     </div>
   )

@@ -2,12 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link, Navigate, Router, useNavigate} from 'react-router-dom';
 import UserProfilesListView from '../Views/UserProfilesList.View'
-import {ImageContext} from '../Views/UserProfilesList.View';
-import Photo from '../Photos/Photo'
-import PhotosList from '../Photos/PhotosList'
-import useAxios from '../../hooks/useAxios';
+// import {ImageContext} from '../Views/UserProfilesList.View';
+// import Photo from '../Photos/Photo'
+// import PhotosList from '../Photos/PhotosList'
+// import useAxios from '../../hooks/useAxios';
 import NewPhoto from '../Photos/NewPhoto';
-
+import Form from '../Form'
 
 const CreateUser = (props) => {
     const [user, setUser] = useState({
@@ -100,9 +100,25 @@ const CreateUser = (props) => {
             // })
     }
 
+
+    // DYNAMIC VARIABLES FOR FORM
+    // NEW VARS
+    let formName = ''
+    let formDescription = ''
+    let field = {} 
+    let address = {addressCountry:'', countryOptionItems:'', addressStreet:'', }
+    let radioButtonList = {radioButtonListName :'', radioButtonName:'', radioButtonListDescription : {}, radioButtonLabel: ""}
+    let checkBoxList= {checkBoxList:'', checkBoxName:'', checkBoxField : "", checkBoxDescription:''}
+    // NEW PROPS
+    //  changeHandler, user
+    
+
+
     return(
+        // <>
+        // <Form formName={formName} formDescription={formDescription} field={field}/>
+        // </>
         <div className='h-20 my-1.5 mx-4'>
-            {/* <form onSubmit={submitHandler} className='grid md:grid-cols-1 lgLgrid-cols-2 xl:grid-cols-2 grid-rows-6 gap-1.5 my-1 max-w-7xl mx-auto px-4'> */}
             <form onSubmit={submitHandler} className='grid md:grid-rows-1 grid-cols-2 gap-.5 my-0 px-4 justify-evenly h-80'>
                 <div className='md:grid-rows-5 gap-.5 my-0 px-4 justify-end'>
                     <div className='col-start-1 row-start-1'>
@@ -175,8 +191,12 @@ const CreateUser = (props) => {
                 </div>
             </form>
                 <UserProfilesListView profilePhoto={profilePhoto} setProfilePhoto={setProfilePhoto} setPhotoReady={setPhotoReady} photoReady={photoReady}/>
-        </div>
+        
+        </div> 
+        
     )   
 }
 
 export default CreateUser;
+
+

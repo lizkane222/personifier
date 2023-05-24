@@ -30,7 +30,7 @@ const CseUserSchema = new mongoose.Schema({
     },
     cseTeam: {
         type: String,
-        required: [true, "CSE Team is required"],
+        required: [false, "CSE Team is required"],
         minlength: [5, "CSE Team must be at least 5 characters long"]
     },
     workspaceSlug: {
