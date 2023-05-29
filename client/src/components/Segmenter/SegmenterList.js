@@ -35,6 +35,7 @@ const SegmenterList = (props) => {
             })
     }
 
+    // REF THIS PAGE FOR STYLING THIS CARD : https://tailwindcss.com/docs/utility-first#why-not-just-use-inline-styles
     return(
         <div className='d-flex flex-wrap'>
             {segmenterList.map((segmenter) => (
@@ -49,14 +50,9 @@ const SegmenterList = (props) => {
                         <p className='text-left text-2xl'><span className='font-bold'>Job Role :</span><span className='text-cyan-950'> {segmenter.jobRole}</span></p>
                         <p className='text-left text-2xl'><span className='font-bold'>Region :</span><span className='text-cyan-950'> {segmenter.region}</span></p>
                         <p className='text-left text-2xl'><span className='font-bold'>Workspace :</span><span className='text-cyan-950'> <a href={`https://app.segment.com/${segmenter.workspaceSlug}`}>{segmenter.workspaceSlug}</a> : {segmenter.workspaceId}</span></p>
-                        { document.location.path==='segmenters' ?
-                        <Link className='btn btn-secondary' to={`/segmenters/`}>Segmenters</Link>
-                        :
                         <Link className='btn btn-secondary' to={`/segmenter/${segmenter._id}`}>View Profile</Link>
-                        }
-                            
-                        <Link className='btn btn-primary' to={`/editSegmenter/${segmenter._id}`}>Edit</Link>
-                        <button className='btn btn-danger' onClick={() => deleteHandler(segmenter._id)}>Delete</button>
+                        {/* <Link className='btn btn-primary' to={`/editSegmenter/${segmenter._id}`}>Edit</Link> */}
+                        {/* <button className='btn btn-danger' onClick={() => deleteHandler(segmenter._id)}>Delete</button> */}
                     </div>
                 ))}
         </div>

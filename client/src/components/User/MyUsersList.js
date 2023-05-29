@@ -9,7 +9,7 @@ const MyUsersList = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/api/allusers')
             .then((res) => {
-                // console.log(res);
+                console.log(res);
                 setUserList(res.data.users)
             })
             .catch((err) => {

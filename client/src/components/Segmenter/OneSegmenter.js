@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
+import MyUsersList from '../User/MyUsersList'
 
 
 const OneSegmenter = (props) => {
-    const {segmenterList, setSegmenterList} = props;
+    const {userList, setUserList, segmenterList, setSegmenterList, currentSegmenterSelection, setCurrentSegmenterSelection} = props
+    // const {segmenterList, setSegmenterList} = props;
     const {id} = useParams();
     console.log(id)
     const [segmenter, setSegmenter] = useState({})
@@ -37,7 +39,7 @@ const OneSegmenter = (props) => {
     return(
         <div className='d-inline-flex justify-content-space-evenly'>
              <div key={segmenter._id}>
-                <h2>Name : {segmenter.firstName} {segmenter.lastName} ({segmenter.preferredPronouns})</h2>
+                <h2>Name : {segmenter.firstName} {segmenter.lastName} ({segmenter.pronouns})</h2>
                 <h4>Slack : {segmenter.slackName}</h4>
                 <h4>Twilio Email : {segmenter.twilioEmail}</h4>
                 <h4>Segment Email : {segmenter.segmentEmail}</h4>
@@ -49,10 +51,15 @@ const OneSegmenter = (props) => {
                 <h4>Workspace ID : {segmenter.workspaceId}</h4>
                 <h4>Pronouns : {segmenter.pronouns}</h4>
                 <h4>Phone Number : {segmenter.phoneNumber}</h4>
-                <Link className='btn btn-secondary' to={`/segmenter/${segmenter._id}`}>View User</Link>
-                <Link className='btn btn-primary' to={`/editSegmenter/${segmenter._id}`}>Edit</Link>
-                <button className='btn btn-danger' onClick={() => deleteHandler(segmenter._id)}>Delete</button>
+                {/* <Link className='btn btn-secondary' to={`/segmenter/${segmenter._id}`}>View User</Link> */}
+                <Link className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2' to={`/segmenters/`}>Segmenters</Link>
+                <Link className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2' to={`/editSegmenter/${segmenter._id}`}>Edit</Link>
+                <button className='absolute right-5 bottom-5 px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2' onClick={() => deleteHandler(segmenter._id)}>Delete</button>
             </div>
+            {/* Create div to show all of this Segmenter's saved Users */}
+            {/* <div>
+                <MyUsersList userList={userList} setUserList={setUserList} currentSegmenterSelection={currentSegmenterSelection} setCurrentSegmenterSelection={setCurrentSegmenterSelection}/> 
+            </div> */}
         </div>
     )   
 }

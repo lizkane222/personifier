@@ -87,7 +87,7 @@ const EditSegmenter = (props) => {
         <div >
             <h2>Edit Segmenter : {segmenter.firstName}</h2>
             <form onSubmit={submitHandler}>
-                <div>
+                <div className='relative'>
                     <label>First Name</label>
                     <input type="text" name="firstName" onChange={changeHandler} value={segmenter.firstName}/>
                     {/* <input type="text" name="firstName" onChange={(e) => {setFirstName(e.target.value)}} value={segmenter.firstName}/> */}
@@ -180,9 +180,10 @@ const EditSegmenter = (props) => {
                         errors.phoneNumber && (<p className='text-danger'>{errors.phoneNumber.message}</p>)
                     }
                 </div>
-                <button>Save Changes</button>
+                <button onClick={submitHandler} className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'>Save Changes</button>
             </form>
-                <button className='btn btn-danger' onClick={() => deleteHandler(segmenter._id)}>Delete</button>
+                {/* ADD WARNING POPUP BEFORE DELETING SEGMENTER */}
+                <button className='absolute right-5 bottom-5 px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2' onClick={() => deleteHandler(segmenter._id)}>Delete</button>
        </div>
     )   
 }

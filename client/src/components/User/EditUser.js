@@ -69,7 +69,7 @@ const EditUser = (props) => {
 
     return(
         <div >
-            <h2>Edit User</h2>
+            <h2>Edit {user.firstName}</h2>
             <form onSubmit={submitHandler}>
                 <div>
                     <label>First Name</label>
@@ -108,7 +108,9 @@ const EditUser = (props) => {
                         errors.phoneNumber && (<p className='text-danger'>{errors.phoneNumber.message}</p>)
                     }
                 </div>
-                <button>Save Changes</button>
+                <button onClick={submitHandler} className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2'>
+                        Save Changes
+                </button>
             </form>
        </div>
     )   

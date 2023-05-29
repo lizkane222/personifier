@@ -56,5 +56,5 @@ module.exports.deleteSegmenter = (req, res) => {
             res.json({ result: result })
         })
         .catch((err) => {
-            res.json({ message: `Something went wrong deleting Segmener ${req.params.id} : `, error: err })
+            res.json({ message: `Something went wrong deleting Segmenter ${req.params.id} : `, error: err })
         });}
