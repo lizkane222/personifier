@@ -1,25 +1,28 @@
 import React, {createContext, useState} from 'react';
-import CseUserList from '../CseUser/CseUserList';
+import SegmenterList from '../Segmenter/SegmenterList';
 import MyUsersList from '../User/MyUsersList';
 
 const PersonifierHome = (props) => {
-    const {userList, setUserList, cseUserList, setCseUserList} = props
-    const [currentCseUserSelection, setCurrentCseUserSelection] = useState([])
+    const {userList, setUserList, segmenterList, setSegmenterList, segmenter} = props
+    const [currentSegmenterSelection, setCurrentSegmenterSelection] = useState([])
 
-    // grab cseUser._id onClick and render the MyUsersList
+    // grab segmenter._id onClick and render the MyUsersList
     // onclick function here, pass props of userId value to then pass ot myuserslist
-    const handleCseUserSelect = (cseUser) => {
-        setCurrentCseUserSelection(cseUser._id)
+    const handleSegmenterSelect = () => {
+        // e.preventDefault();
+        setCurrentSegmenterSelection(segmenter._id)
     }
 
 
     return (
         <div>
             <div >
-                <CseUserList cseUserList={props.cseUserList} setCseUserList={props.setCseUserList} handleCseUserSelect={handleCseUserSelect} currentCseUserSelection={currentCseUserSelection} setCurrentCseUserSelection={setCurrentCseUserSelection}/>
+                {/* removing segmenter from props */}
+                {/* <SegmenterList segmenterList={props.segmenterList} setSegmenterList={props.setSegmenterList} segmenter={segmenter} handleSegmenterSelect={handleSegmenterSelect} currentSegmenterSelection={currentSegmenterSelection} setCurrentSegmenterSelection={setCurrentSegmenterSelection}/> */}
+                <SegmenterList segmenterList={props.segmenterList} setSegmenterList={props.setSegmenterList} handleSegmenterSelect={handleSegmenterSelect} currentSegmenterSelection={currentSegmenterSelection} setCurrentSegmenterSelection={setCurrentSegmenterSelection}/>
             </div>
             <div>
-                <MyUsersList userList={userList} setUserList={setUserList} currentCseUserSelection={currentCseUserSelection}/> 
+                <MyUsersList userList={userList} setUserList={setUserList} currentSegmenterSelection={currentSegmenterSelection}/> 
             </div>
         </div>
     );

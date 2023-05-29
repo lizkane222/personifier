@@ -10,11 +10,12 @@ import Nav from './components/Nav';
 // PERSONIFIER HOME
 import PersonifierHome from './components/Views/PersonifierHome';
 
-// CSE USER IMPORTS
-import CseUserList from './components/CseUser/CseUserList';
-import OneCseUser from './components/CseUser/OneCseUser';
-import CreateCseUser from './components/CseUser/CreateCseUser';
-import EditCseUser from './components/CseUser/EditCseUser';
+// SEGMENTER IMPORTS
+import SegmenterList from './components/Segmenter/SegmenterList';
+// SegmenterList
+import OneSegmenter from './components/Segmenter/OneSegmenter';
+import CreateSegmenter from './components/Segmenter/CreateSegmenter';
+import EditSegmenter from './components/Segmenter/EditSegmenter';
 
 // USER IMPORTS
 import UserList from './components/User/UserList';
@@ -30,7 +31,7 @@ import NewPhoto from './components/Photos/NewPhoto';
 import UserWorkshop from './components/Views/UserWorkshop'
 
 function App() {
-  const [cseUserList, setCseUserList] = useState([]);
+  const [segmenterList, setSegmenterList] = useState([]);
   const [userList, setUserList] = useState([]);
   // const [photoList, setPhotoList] = useState([]);
 
@@ -44,15 +45,15 @@ function App() {
       {/* <Header/> */}
         <Routes>
           {/* PERSONIFIER */}
-          <Route path='/' element={<PersonifierHome cseUserList={cseUserList} setCseUserList={setCseUserList} userList={userList} setUserList={setUserList}/>}/>
+          <Route path='/' element={<PersonifierHome segmenterList={segmenterList} setSegmenterList={setSegmenterList} userList={userList} setUserList={setUserList}/>}/>
 
+          {/* SEGMENTER USER ROUTES */}
+          <Route path='/segmenters/' element={<SegmenterList segmenterList={segmenterList} setSegmenterList={setSegmenterList}/>}/>
+          <Route path='/createSegmenter/form' element={<CreateSegmenter/>}/>
+          <Route path='/segmenter/:id' element={<OneSegmenter/>}/>
+          {/* <Route path='/viewSegmenter/:id' element={<OneSegmenter/>}/> */}
+          <Route path='/editSegmenter/:id' element={<EditSegmenter/>}/>
 
-          {/* CSE USER ROUTES */}
-          <Route path='/cseUsers/' element={<CseUserList cseUserList={cseUserList} setCseUserList={setCseUserList}/>}/>
-          <Route path='/createCSEUser/form' element={<CreateCseUser/>}/>
-          <Route path='/cseUser/:id' element={<OneCseUser/>}/>
-          {/* <Route path='/viewCseUser/:id' element={<OneCseUser/>}/> */}
-          <Route path='/editCseUser/:id' element={<EditCseUser/>}/>
         {/* USER ROUTES */}
           <Route path='/users/' element={<UserList userList={userList} setUserList={setUserList}/>}/>
           <Route path='/createUser/form' element={<CreateUser/>}/>

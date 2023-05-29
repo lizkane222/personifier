@@ -15,11 +15,11 @@ export const Nav = (props) => {
                         {/* <Splash theme={props.theme} setTheme={props.setTheme}/> */}
                     <nav className="absolute inset-x-0 top-0 h-16 ">
                         
-                        <Link activeClass="active" className="mx-5 text-indigo-950" to="/" spy={true} smooth={true} duration={1000}>Personifier</Link>
+                        <Link activeClass="active" className="mx-5 text-indigo-950" to="/segmenters/" spy={true} smooth={true} duration={1000}>Personifier</Link>
                         
-                        {/* <Link activeClass="active" className="mx-5 text-indigo-950" to="/cseUsers/" spy={true} smooth={true} duration={1100}>CSEs</Link> */}
+                        {/* <Link activeClass="active" className="mx-5 text-indigo-950" to="/segmenters/" spy={true} smooth={true} duration={1100}>Segmenters</Link> */}
                         
-                        <Link activeClass="active" className="mx-5 text-indigo-950" to="/createCSEUser/form/" spy={true} smooth={true} duration={1200}>NEW CSE</Link>
+                        <Link activeClass="active" className="mx-5 text-indigo-950" to="/createSegmenter/form/" spy={true} smooth={true} duration={1200}>NEW Segmenter</Link>
                         
                         <Link activeClass="active" className="mx-5 text-indigo-950" to="/users" spy={true} smooth={true} duration={1300}>Users</Link>
                         

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
  
-const CseUserSchema = new mongoose.Schema({
+const SegmenterSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: [true, "First name is required"],
@@ -28,10 +28,15 @@ const CseUserSchema = new mongoose.Schema({
         required: [true, "Twilio email is required"],
         minlength: [10, "Twilio email must be at least 10 characters long"]
     },
-    cseTeam: {
+    internalTeam: {
         type: String,
-        required: [false, "CSE Team is required"],
-        minlength: [5, "CSE Team must be at least 5 characters long"]
+        required: [false, "Internal Team is not required"],
+        minlength: [5, "Internal Team must be at least 5 characters long"]
+    },
+    team: {
+        type: String,
+        required: [false, "Team is not required"],
+        minlength: [5, "Team must be at least 5 characters long"]
     },
     workspaceSlug: {
         type: String,
@@ -42,7 +47,7 @@ const CseUserSchema = new mongoose.Schema({
         type: String,
         required: [false, "WorkspaceId is not required"]
     },
-    preferredPronouns: {
+    pronouns: {
         type: String,
         required: [false, "Preferred pronouns is not required"]
     },
@@ -54,9 +59,9 @@ const CseUserSchema = new mongoose.Schema({
         type: String,
         required: [false, "region is not required"]
     },
-    role : {
+    jobRole : {
         type: String,
-        required: [false, "role is not required"]
+        required: [false, "jobRole is not required"]
     },
     myUsers : {
         type: [String],
@@ -64,6 +69,6 @@ const CseUserSchema = new mongoose.Schema({
     }
 }, {timestamps:true});
  
-const CseUser = mongoose.model('CseUser', CseUserSchema);
+const Segmenter = mongoose.model('Segmenter', SegmenterSchema);
  
-module.exports = CseUser;
+module.exports = Segmenter;

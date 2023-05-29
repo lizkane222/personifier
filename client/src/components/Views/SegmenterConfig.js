@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const CseUserConfig = () => {
+const SegmenterConfig = () => {
     
     
     
@@ -12,4 +12,4 @@ const CseUserConfig = () => {
     )
 }
 
-export default CseUserConfig
+export default SegmenterConfig;

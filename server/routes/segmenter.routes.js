@@ -1,28 +1,30 @@
-const CseUserController = require('../controllers/cseuser.controller');
+const SegmenterController = require('../controllers/segmenter.controller');
  
 module.exports = app => {
-    app.get('/api/allcseusers', CseUserController.findAllCseUsers);
-    app.get('/api/cseuser/:id', CseUserController.findCseUser);
-    app.post('/api/newcseuser', CseUserController.createCseUser);
-    app.put('/api/cseuser/:id', CseUserController.updateCseUser);
-    app.delete('/api/deletecseuser/:id', CseUserController.deleteCseUser);
+    app.get('/api/allsegmenters', SegmenterController.findAllSegmenters);
+    app.get('/api/segmenter/:id', SegmenterController.findSegmenter);
+    app.post('/api/newsegmenter', SegmenterController.createSegmenter);
+    app.put('/api/segmenter/:id', SegmenterController.updateSegmenter);
+    app.delete('/api/deletesegmenter/:id', SegmenterController.deleteSegmenter);
 }
 
 
-// LIZ KANE CSE USER 
+// LIZ KANE SEGMENTER 
 // {
-//     "firstName": "Liz",
-//     "lastName": "Kane",
-//     "slackName": "lkane",
-//     "segmentEmail": "liz.kane@gcp.segment.com",
-//     "twilioEmail": "lkane@twilio.com",
-//     "cseTeam": "Team-2 : (Connections 2, Cloud Mode, Server-Side, Engage)",
-//     "workspaceSlug": "liz-kane",
-//     "workspaceId": "1234567890",
-//     "preferredPronouns" : "she/her",
-//     "phoneNumber": "555-555-5555"
+    // "firstName": "Liz",
+    // "lastName": "Kane",
+    // "slackName": "lkane",
+    // "segmentEmail": "liz.kane@gcp.segment.com",
+    // "twilioEmail": "lkane@twilio.com",
+    // "internalTeam": "Team-2 : (Connections 2, Cloud Mode, Server-Side, Engage)",
+    // "team": "Customer Success Engineering",
+    // "workspaceSlug": "liz-kane",
+    // "workspaceId": "1234567890",
+    // "pronouns" : "she/her",
+    // "phoneNumber": "555-555-5555"
+    // "jobRole" : "Senior Customer Success Engineer",
+    // "region" : "US : CA / PST"
 // }
-
 
 
 // DELETE RESPONSE : 
@@ -35,21 +37,24 @@ module.exports = app => {
 
 // VALIDATION REQUEST (empty strings) : 
 // {
-//     "firstName": "",
-//     "lastName": "",
-//     "slackName": "",
-//     "segmentEmail": "",
-//     "twilioEmail": "",
-//     "cseTeam": "",
-//     "workspaceSlug": "",
-//     "workspaceId": "",
-//     "preferredName" : "",
-//     "phoneNumber": ""
+    // "firstName": "",
+    // "lastName": "",
+    // "slackName": "",
+    // "segmentEmail": "",
+    // "twilioEmail": "",
+    // "internalTeam": "",
+    // "team": "",
+    // "workspaceSlug": "",
+    // "workspaceId": "",
+    // "pronouns" : "",
+    // "phoneNumber": "",
+    // "jobRole" : "",
+    // "region" : ""
 // }
 
 // VALIDATION ERRORS : 
 // {
-//     "message": "Something went wrong creating cse user : ",
+//     "message": "Something went wrong creating segmenter : ",
 //     "error": {
 //         "errors": {
 //             "firstName": {
@@ -117,17 +122,17 @@ module.exports = app => {
 //                 "path": "twilioEmail",
 //                 "value": ""
 //             },
-//             "cseTeam": {
+//             "internalTeam": {
 //                 "name": "ValidatorError",
-//                 "message": "CSE Team is required",
+//                 "message": "Internal Team is required",
 //                 "properties": {
-//                     "message": "CSE Team is required",
+//                     "message": "Internal Team is required",
 //                     "type": "required",
-//                     "path": "cseTeam",
+//                     "path": "internalTeam",
 //                     "value": ""
 //                 },
 //                 "kind": "required",
-//                 "path": "cseTeam",
+//                 "path": "internalTeam",
 //                 "value": ""
 //             },
 //             "workspaceSlug": {
@@ -186,8 +191,8 @@ module.exports = app => {
 //                 "value": ""
 //             }
 //         },
-//         "_message": "CseUser validation failed",
+//         "_message": "Segmenter validation failed",
 //         "name": "ValidationError",
-//         "message": "CseUser validation failed: firstName: First name is required, lastName: Last name is required, slackName: Slack name is required, segmentEmail: Segment email is required, twilioEmail: Twilio email is required, cseTeam: CSE Team is required, workspaceSlug: Workspace Slug is required, workspaceId: WorkspaceId must be at least 7 characters long, preferredName: Preferred name must be at least 2 characters long, phoneNumber: Phone number must be at least 10 characters long"
+//         "message": "Segmenter validation failed: firstName: First name is required, lastName: Last name is required, slackName: Slack name is required, segmentEmail: Segment email is required, twilioEmail: Twilio email is required, internalTeam: Internal Team is required, workspaceSlug: Workspace Slug is required, workspaceId: WorkspaceId must be at least 7 characters long, preferredName: Preferred name must be at least 2 characters long, phoneNumber: Phone number must be at least 10 characters long"
 //     }
 // }

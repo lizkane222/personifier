@@ -48,9 +48,9 @@ const UserSchema = new mongoose.Schema({
         type: [Schema.Types.Mixed],
         required: [false, 'traits is not required']
     },
-    cseUsers : {
+    segmenters : {
         type: [String],
-        required: [false, 'cseUsers is not required']
+        required: [false, 'segmenters is not required']
     }
 }, {timestamps:true});
  

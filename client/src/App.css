@@ -19,7 +19,7 @@ body {
   color: white;
 } */
 
-.cseUserCard {
+.segmenterCard {
   padding: .25em;
   margin: .25em;
 }
@@ -35,11 +35,6 @@ body {
 .hover-slide:hover{
   box-shadow: inset 200px 0 0 0 #54b3d6;
   color: white;
-}
-
-/* CSE USER CARDS */
-.cseUserCard{
-  
 }
 
 .card-span{

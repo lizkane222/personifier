@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 import Photo from '../Photos/Photo';
 
 const MyUsersList = (props) => {
-    const {userList, setUserList, currentCseUserSelection} = props;
+    const {userList, setUserList, currentSegmenterSelection} = props;
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/allusers')
@@ -17,13 +17,13 @@ const MyUsersList = (props) => {
             })
     }, [])
 
-// THIS CSE USER's SAVED USERS : currentCseUserSelection.users
+// THIS SEGMENTER's SAVED USERS : currentSegmenterSelection.users
 // https://retool.com/blog/filtering-data-in-react-filter-map-and-for-loops/
 // render users : array 
-    // const renderCseUsersSavedUsers = () => {
-    //     let cseUser = currentCseUserSelection.id
+    // const renderSegmentersSavedUsers = () => {
+    //     let segmenter = currentSegmenterSelection.id
         
-    //     console.log(userList.filter(user.cseUsers.includes(cseUser)))
+    //     console.log(userList.filter(user.segmenters.includes(segmenter)))
 
     // }
 

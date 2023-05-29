@@ -1,0 +1,98 @@
+type Query {
+  info: String!
+  feed: [Link!]!
+  link(id:ID!): Link
+}
+
+type Mutation {
+    post(url: String!, description: String!): Link!
+    createLink(url: String!, description: String!): Link!
+    updateLink(id: ID!, url: String, description: String): Link
+    deleteLink(id: ID!): Link
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+}
+
+# // Data source: Tells Prisma you'll be using SQLite for your database connection.
+datasource db {
+    provider = "sqlite"
+    url = "file:./dev.db"
+}
+
+# // Generator: Indicates that you want to generate Prisma Client.
+generator client {
+    provider = "prisma-client-js"
+}
+
+# // Data model: Here, we have written out our Link as a model.
+model Link {
+    id              Int     @id @default(autoincrement())
+    createdAt       Date    @default(now())
+    description     String
+    url             String
+}
+
+
+model Segmenter {
+    id              String    @id
+    firstName       String
+    slackName       String
+    segmentEmail    String
+    twilioEmail     String
+    internalTeam    String
+    team            String
+    workspaceSlug   String
+    workspaceId     String
+    pronouns        String
+    phoneNumber     String
+    jobRole         String
+    region          String
+    myUsers         User[]      @relation(fields: [userId], references: [id])
+    createdAt       Date        @default(now())
+    updatedAt       Date        @updatedAt
+}
+
+model User {
+    id              String      @id
+    userId          String
+    anonymousId     Type[]
+    firstName       String
+    lastName        String
+    email           String
+    username        String
+    phoneNumber     String
+    profilePhoto    String
+    traits          Object
+    pinned          Boolean     @default(false)
+    segmenters      Segmenter[] @relation(fields: [id], references: [id])
+    createdAt       Date        @default(now())
+    updatedAt       Date        @updatedAt
+}
+
+model ProfilePhoto {
+    id                      String      @id
+    alt_description         String
+    blur_hash               String
+    color                   String
+    height                  Int
+    links                   Object
+    links_download          String
+    links_download_location String
+    links_html              String
+    links_self              String
+    urls                    Object
+    urls_full               String
+    urls_raw                String
+    urls_regular            String
+    urls_small              String
+    urls_small_s3           String
+    urls_thumb              String
+    width                   Int
+    users                   User[]      @relation(fields: [userId], references: [id])
+    createdAt               Date        @default(now())
+    updatedAt               Date        @updatedAt
+}
