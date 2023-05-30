@@ -4,7 +4,7 @@ import UNSPLASH_ACCESS_KEY from '../../.env';
 
 const SearchField = (props) => {
   const {newPage} = props
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("profile photos");
   const { fetchData, setSearchPhoto } = useContext(ImageContext);
   const [pageCount, setPageCount] = useState(1)
   // let newPage = Math.floor(Math.random() * 250)
@@ -22,13 +22,13 @@ const SearchField = (props) => {
     // fetchData(`search/photos?page=1&query=${searchValue}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`)
     // setPageCount(newPage)
     // setPageCount(pageCount+1)
-    fetchData(`search/photos?page=${newPage}&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
+    fetchData(`search/photos?page=${newPage}&query=${searchValue}&per_page=25&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
   }
   const handleEnterSearch = e => {
     if(e.key === 'Enter') {
     //   fetchData(`search/photos?page=1&query=${searchValue}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`)
     setPageCount(newPage)  
-    fetchData(`search/photos?page=${newPage}&query=${searchValue}&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
+    fetchData(`search/photos?page=${newPage}&query=${searchValue}&per_page=25&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
     //   setSearchValue("");
       setSearchPhoto(searchValue);
     }
@@ -53,12 +53,12 @@ const SearchField = (props) => {
                 className="bg-blue-600 px-6 py-2.5 text-white rounded-tr rounded-br focus:ring-2 focus:ring-blue-300 disabled:bg-gray-400"
             >Search</button>
         </div>
-        <div className='flex justify-content-center justify-items-center'>
+        <div className=' justify-items-center'>
           {/* FEATURE : ADD TAGS TO INCLUDE IN SEARCH : List Style Image @ https://tailwindcss.com/docs/list-style-image */}
             <a to="!" className='hover:focus cursor-pointer' >
               <h3 className='text-center mt-6 text-2xl text-white' onClick={handleButtonSearch}>{searchValue ? searchValue : 'profile photos'} : </h3>
             </a>
-            <button onClick={handleButtonSearch} className='hover-slide bg-none px-1 py-.5 text-white rounded pointer-events-auto mr-6' >more results</button>
+            <button onClick={handleButtonSearch} className='justify-self-start hover-slide bg-none px-1 py-.5 text-white rounded pointer-events-auto mr-6' >more results</button>
         </div>
     </div>
   )

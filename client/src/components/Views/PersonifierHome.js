@@ -21,7 +21,7 @@ const PersonifierHome = (props) => {
                 {/* removing segmenter from props */}
                 {/* <SegmenterList segmenterList={props.segmenterList} setSegmenterList={props.setSegmenterList} segmenter={segmenter} handleSegmenterSelect={handleSegmenterSelect} currentSegmenterSelection={currentSegmenterSelection} setCurrentSegmenterSelection={setCurrentSegmenterSelection}/> */}
                 
-                <Link activeClass="active" className="mx-5 text-indigo-950" to="/createSegmenter/form/" spy={true} smooth={true} duration={1200}>NEW Segmenter</Link>
+                <Link className="mx-5 text-indigo-950 active" to="/createSegmenter/form/" >NEW Segmenter</Link>
                 <SegmenterList segmenterList={props.segmenterList} setSegmenterList={props.setSegmenterList} handleSegmenterSelect={handleSegmenterSelect} currentSegmenterSelection={currentSegmenterSelection} setCurrentSegmenterSelection={setCurrentSegmenterSelection}/>
             </div>
             <div>

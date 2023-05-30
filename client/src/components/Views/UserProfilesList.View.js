@@ -12,7 +12,7 @@ const UserProfilesListView = (props) => {
     let newPage = Math.floor(Math.random() * 50)
 
     // const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&query=profile%20photos&client_id=${UNSPLASH_ACCESS_KEY}`);
-    const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&per_page=20&query=profile%20photos&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`);
+    const {response, isLoading, error, fetchData} = useAxios(`/search/photos?page=1&per_page=25&query=profile%20photos&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`);
     // console.log(response)
 
     const value = {

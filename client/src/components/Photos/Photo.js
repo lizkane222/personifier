@@ -65,7 +65,7 @@ const Photo = (props) => {
             {/* /photos/:id */}
             {/* CHANGE rounded-lg to rounded-full when on some pages */}
             
-            <img  id={data.id} className="h-72 w-full object-cover rounded-lg shadow-md m-0" src={data.urls.small} alt={data.alt_description} 
+            <img  id={data.id} key={data.key} className="h-72 w-full object-cover rounded-lg shadow-md m-0" src={data.urls.small} alt={data.alt_description} 
             />
             {/* GET ALL USERS THAT USE THIS PROFILE PHOTO */}
             {/* <Link className='btn btn-secondary' to={`/user/${user._id}`}>View Users</Link> */}
