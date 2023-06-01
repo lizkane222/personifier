@@ -3,6 +3,7 @@ import SegmenterList from '../Segmenter/SegmenterList';
 import MyUsersList from '../User/MyUsersList';
 import {Link} from 'react-router-dom';
 
+
 const PersonifierHome = (props) => {
     const {userList, setUserList, segmenterList, setSegmenterList, segmenter} = props
     const [currentSegmenterSelection, setCurrentSegmenterSelection] = useState([])
