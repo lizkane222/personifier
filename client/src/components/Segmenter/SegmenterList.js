@@ -37,7 +37,7 @@ const SegmenterList = (props) => {
 
     // REF THIS PAGE FOR STYLING THIS CARD : https://tailwindcss.com/docs/utility-first#why-not-just-use-inline-styles
     return(
-        <div className='d-flex flex-wrap'>
+        <div className='flex flex-wrap'>
             {segmenterList.map((segmenter) => (
                     // <div onClick={() => {console.log(segmenter._id)}} className='segmenterCard bg-slate-400 w-1/3 justify-content-between' key={segmenter._id}>
                     <div onClick={handleSegmenterSelect} className='segmenterCard text-neutral-600 bg-stone-100 w-1/3 justify-content-between' key={segmenter._id}>

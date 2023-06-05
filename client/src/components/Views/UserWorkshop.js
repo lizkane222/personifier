@@ -6,7 +6,27 @@ import { DownloadQueryStringIcon, UploadQueryStringIcon, AndroidIcon, AppleIcon,
 
 const UserWorkshop = () => {
 
-    
+    // CREATE GET REQ TO GRAB LIST OF ALL ITEMS IN NOTES CAVEATS
+
+
+    // UPDATE LIST OF ITEMS (NOTES/CAVEATS) WITH NEW LIST ITEM
+
+
+
+
+    const handleEnterNewItem = (e, list) => {
+        if(e.key === 'Enter') {
+            // CREATE NEW ITEM BY MODEL : list param
+            //   fetchData(`search/photos?page=1&query=${searchValue}&client_id=${process.env.UNSPLASH_ACCESS_KEY}`)
+            
+            // CREATE FETCH STATEMENT TO RENDER LIST WITH NEW ITEM
+            // fetchData(`search/photos?page=${newPage}&query=${searchValue}&per_page=25&client_id=8HuUWVb7qIlJadnLWkjSCZ4Jc9omuIbbwmSNX-43bAI`)
+            
+        
+        //   setSearchPhoto(searchValue);
+        //   setSearchValue("");
+        }
+    }
     
     return(
         <div className='relative m-0 h-full w-full '>
@@ -124,7 +144,7 @@ const UserWorkshop = () => {
                     </div>
                     {/* CODE EDITOR */}
                     <div className='mt-2 w-2/5 h-4/6 rounded-rounded mr-4 '>
-                        <div className='mt-0 h-3/6 m-4 bg-sky-100 rounded-rounded border-segment-green border-2 shadow-xlg shadow-slate-900 flex fit-items'>
+                        <div className='mt-0 h-3/6 w-1/2 m-4 bg-sky-100 rounded-rounded border-segment-green border-2 shadow-xlg shadow-slate-900 flex fit-items'>
                             {/* <h6>code editor</h6> */}
                             
                             <CodeEditor />
@@ -139,9 +159,52 @@ const UserWorkshop = () => {
                         </div>
                     </div>
             </div>
-            {/* RESOURCES DIV */}
-            <div className='absolute w-full h-96 bg-segment-green'>
 
+            {/* RESOURCES DIV */}
+            <div className='absolute w-full h-full bg-segment-green grid grid-row-3 grid-col-3 gap-4 table-auto p-3'>
+                <div className='bg-segment-blue w-full h-full text-white row-start-1 row-end-1 col-start-1 col-end-1'>
+                    <h3>Caveats</h3>
+                    <input className='' placeholder='create new note' onKeyDown={() => handleEnterNewItem('caveats')}/>
+                    <ul>
+                        {/* onlick edit and update item */}
+                        <li></li>
+                    </ul>
+                </div>
+                <div className='bg-segment-blue w-full h-full  text-white row-start-1 row-end-1 col-start-2 col-end-2'>
+                    <h3>NOTES</h3>
+                    <input className='' placeholder='create new note' onKeyDown={() => handleEnterNewItem('notes')}/>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                <div className='bg-segment-blue w-full h-full  text-white row-start-1 row-end-1 col-start-3 col-end-3'>
+                    <h3>Load destination</h3>
+                    <ul>
+                        {/* onlick edit and update item */}
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div className='bg-segment-blue w-full h-full  text-white row-start-2 row-end-3 col-start-1 col-end-1'>
+                    {/* add logic to verify segmenter has auth to view internal docs */}
+                    <h3>Selected Source Docs (internal / public)</h3>
+                    {/* <iframe src="https://segment.com/docs/utils/search/?segment-docs"></iframe> */}
+                    <iframe src=""></iframe>
+                </div>
+                
+                <div className='bg-segment-blue w-full h-full text-white row-start-2 row-end-3 col-start-2 col-end-2'>
+                    {/* add logic to verify segmenter has auth to view internal docs */}
+                    <h3>Waldo (internal / public)</h3>
+                    {/* <iframe src="https://backstage.segmentops.com/search"></iframe> */}
+                    <iframe src=""></iframe>
+                </div>
+
+                <div className='bg-segment-blue w-full h-full  text-white row-start-2 row-end-3 col-start-3 col-end-3'>
+                    {/* add logic to verify segmenter has auth to view internal docs */}
+                    <h3>Selected Destination Docs (internal / public)</h3>
+                    {/* <iframe src="https://segment.com/docs/utils/search/?segment-docs"></iframe> */}
+                    <iframe src=""></iframe>
+                </div>
             </div>
             
 

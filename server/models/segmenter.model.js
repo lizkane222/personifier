@@ -16,7 +16,7 @@ const SegmenterSchema = new mongoose.Schema({
     slackName: {
         type: String,
         required: [true, "Slack name is required"],
-        minlength: [4, "Slack name must be at least 4 characters long"]
+        minlength: [3, "Slack name must be at least 4 characters long"]
     },
     segmentEmail: {
         type: String,

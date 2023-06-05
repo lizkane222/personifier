@@ -55,7 +55,7 @@ const CreateUser = (props) => {
         // : setUser({...user, .target.value})
     }
 
-    const addProfilePhotoToUser = (e) => {
+    const addProfilePhotoToUser = (e,user) => {
         e.preventDefault();
         // console.log(profilePhoto.id)
 
@@ -80,7 +80,7 @@ const CreateUser = (props) => {
             urls_thumb : profilePhoto.urls_thumb,
             width : profilePhoto.width,
             // async await add user's id to this object
-            users : {}
+            users : [user._id]
         })
     }  
     
@@ -115,22 +115,24 @@ const CreateUser = (props) => {
                         }
                             // console.log('RES : ',res)
                             // console.log('SPREADER USER : ', {...user, profilePhoto:profilePhoto.id})  
-                            return setUser({...user, profilePhoto:profilePhoto.id})
+                            return setUser({...user, profilePhoto:profilePhoto})
                                 // createProfilePhoto()
                         })
                         .then(() => {
-                            addProfilePhotoToUser()
+                            console.log('2nd then, 1st then - user : ',user)
+                            addProfilePhotoToUser(user)
                             return setProfilePhoto({...profilePhoto, users:user._id})
                         })
-                        // .then(()=> {
-                        //     // return setProfilePhoto(profilePhoto)
-                        // })
+                        .then(()=> {
+                            console.log('profilephoto before posting photo',profilePhoto)
+                        })
                         .catch((err) => {
                             console.log(err)
                         })
                         return axios.post('http://localhost:8000/api/newprofilephoto', profilePhoto)
                             .then((res) => {
                                 console.log(res);
+                                console.log('profilephoto after posting photo',profilePhoto);
                             })
                             .catch((err) => {
                                 // console.log(err.response.data.errors);
@@ -147,7 +149,9 @@ const CreateUser = (props) => {
                     profilePhoto : ""
                 })
                 setPhotoReady(!photoReady)
-                Navigate(`/user/${res.data.newuser._id}`);
+            })
+            .then((res) => {
+                Navigate(`/user/${newuserid}`);
             })
             .catch(err=>console.log(err))
             // .catch((err) => {
@@ -175,7 +179,7 @@ const CreateUser = (props) => {
         // <Form formName={formName} formDescription={formDescription} field={field}/>
         // </>
         <div className='h-20 my-1.5 pt-2  w-full'>
-            <form onSubmit={submitHandler} className='grid md:grid-rows-1 grid-cols-3 my-0 mx-4 py-2 px-4 justify-center h-80 w-full'>
+            <form onSubmit={submitHandler} className='grid md:grid-rows-1 grid-cols-3 my-0 mx-4 py-2 px-4 justify-space-between h-80 w-full'>
                 <div className='md:grid-rows-5 gap-.5 my-0 px-4 justify-end w-5/6'>
                     <div className='col-start-1 row-start-1 grid grid-rows-1 grid-cols-2 justify-items-center'>
                         <label className='w-60 text-right h-10'>First Name </label>

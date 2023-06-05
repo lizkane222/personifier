@@ -42,16 +42,21 @@ const CreateSegmenter = (props) => {
                     internalTeam: "",
                     team: "",
                     jobRole: "",
+                    region: "",
                     workspaceSlug: "",
                     workspaceId: "",
-                    preferredPronouns: "",
+                    pronouns: "",
                     phoneNumber : ""
                 })
+                console.log(segmenter)
                 Navigate('/segmenters/');
             })
             .catch((err) => {
-                console.log(err.response.data.errors);
-                setErrors(err.response.data.errors);
+                if(err){
+                    console.log(err)
+                    setErrors(err.response.data.errors);
+                    console.log(errors)
+                }
             })
     }
     

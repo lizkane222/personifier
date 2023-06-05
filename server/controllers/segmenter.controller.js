@@ -1,9 +1,9 @@
-const Segmenters = require('../models/segmenter.model');
+const Segmenter = require('../models/segmenter.model');
 // https://mongoosejs.com/docs/queries.html
 
 // READ : ALL SEGMENTERS
 module.exports.findAllSegmenters = (req, res) => {
-    Segmenters.find()
+    Segmenter.find()
         .then((allsegmenters) => {
             res.json({ segmenters: allsegmenters })
         })
@@ -15,7 +15,7 @@ module.exports.findAllSegmenters = (req, res) => {
 // READ : ONE SEGMENTER USER
 module.exports.findSegmenter = (req, res) => {
     // console.log(req.params)
-    Segmenters.findOne({ _id: req.params.id })
+    Segmenter.findOne({ _id: req.params.id })
         .then(findOneSegmenter => {
             res.json({ segmenter: findOneSegmenter })
         })
@@ -25,7 +25,7 @@ module.exports.findSegmenter = (req, res) => {
 
 // CREATE : ONE SEGMENTER USER
 module.exports.createSegmenter = (req, res) => {
-    Segmenters.create(req.body)
+    Segmenter.create(req.body)
         .then(newSegmenter => {
             res.json({ newsegmenter: newSegmenter })
         })
@@ -36,7 +36,7 @@ module.exports.createSegmenter = (req, res) => {
 // UPDATE : ONE SEGMENTER USER
 module.exports.updateSegmenter = (req, res) => {
     // console.log(req.params)
-    Segmenters.findOneAndUpdate(
+    Segmenter.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
         { new: true, runValidators: true }
@@ -51,7 +51,7 @@ module.exports.updateSegmenter = (req, res) => {
  
 // DELETE : ONE SEGMENTER USER
 module.exports.deleteSegmenter = (req, res) => {
-    Segmenters.deleteOne({ _id: req.params.id })
+    Segmenter.deleteOne({ _id: req.params.id })
         .then(result => {
             res.json({ result: result })
         })

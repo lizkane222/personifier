@@ -38,9 +38,9 @@ const files = {
   },
 }
 
-const convertAjsToJson = () => {
+// const convertAjsToJson = () => {
 
-}
+// }
 
 
 function CodeEditor() {
@@ -52,12 +52,12 @@ function CodeEditor() {
   const minimap = {'enabled':'false'}
   // files['script.track.js'] => file => name, language, value => pass those to the editor
 
-  // function handleEditorDidMount(editor, monaco) {
-  //   editorRef.current = editor;
-  // }
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor;
+  }
   
   function getEditorValue(editor) {
-    // editorRef.current = editor;
+    editorRef.current = editor;
     alert(editorRef.current.getValue());
   }
 
@@ -65,12 +65,12 @@ function CodeEditor() {
   const darkMode = 'vs-dark'
   const editorTheme = useRef(darkMode)
 
-  useEffect(() => {
-    monaco?.languages.typescript.javascriptDefaults.setEagerModelSync(true)
-    if(monaco){
-      console.log('here is the monaco instance:', monaco)
-    }
-  }, [monaco]);
+  // useEffect(() => {
+  //   monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true)
+  //   // if(monaco){
+  //   //   console.log('here is the monaco instance:', monaco)
+  //   // }
+  // }, [monaco]);
 
 
   const options= {
@@ -121,7 +121,7 @@ function CodeEditor() {
   }
 
   return (
-    <div className='codeEditor relative rounded-lg w-full h-80 my-2 mx-3 relative'>
+    <div className='codeEditor relative rounded-lg w-1/2 left-0 h-80 my-2 mx-5 relative'>
       <div className='absolute inset-y-0 inset-x-0'>
           {/* <div className='w-28 m-1 rounded-lg border-segment-green border-2 tx-md cursor-pointer' onClick={() => handleTheme(!editorTheme)}>mode</div> */}
           <div className='w-10 m-1 rounded-lg border-segment-green border-2 tx-sm cursor-pointer' onClick={() => setFileName('track.ajs')}>track</div>
@@ -137,7 +137,7 @@ function CodeEditor() {
         theme={lightMode}
         defaultLanguage={file.language}
         path={file.name}
-        // onMount={handleEditorDidMount}
+        onMount={handleEditorDidMount}
         defaultValue={file.value}
         className='editor'
         options={options}

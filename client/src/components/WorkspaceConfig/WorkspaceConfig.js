@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import DefaultProfilePhoto from '../User/default-profil-photo.jpg'
 import PUBLICAPITOKEN from '../../.env'
+import useAxios from '../../hooks/useAxios';
 
 const publicApiUrl = 'https://api.segmentapis.com/sources?pagination[count]=10&%5Bcursor%5D=string%5D';
 const Authorization = `Bearer ${PUBLICAPITOKEN}`;
@@ -20,7 +21,7 @@ const headers = {
 }
 
 const WorkspaceConfig = () => {
-
+    
     const getSources = () => {
         axios.get('https://api.segmentapis.com/sources?pagination[count]=10&%5Bcursor%5D=string%5D',axiosHeaders)
             .then(response => {

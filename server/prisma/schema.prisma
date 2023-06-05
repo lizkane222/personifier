@@ -1,13 +1,10 @@
-// Whenever you make changes to your Prisma schema in the future, you manually need to invoke prisma generate in order to accommodate the changes in your Prisma Client API.
-// prisma generate
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -27,18 +24,8 @@ type ProfilephotoUrls {
   thumb    String
 }
 
-// type UserTraits {
-//   id              String?            
-//   email           String?        
-//   firstName       String?
-//   lastName        String?
-//   phoneNumber     String?
-//   userId          String?         
-//   username        String?
-// }
-
-model Profilephoto {
-  id                      String              @id @map("_id") @db.ObjectId
+model profilephoto {
+  id                      String              @id @default(auto()) @map("_id") @db.ObjectId
   v                       Int                 @map("__v")
   alt_description         String
   blur_hash               String
@@ -57,58 +44,64 @@ model Profilephoto {
   urls_small              String
   urls_small_s3           String
   urls_thumb              String
-  //users                   User?          
-  users                   User[]          
+  users                   userphoto[]
   width                   Int
 }
 
-model Segmenter {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int             @map("__v")
-  createdAt     DateTime        @db.Date
+model segmenter {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  v             Int           @map("__v")
+  createdAt     DateTime      @db.Date
+  userId        String        @unique @map("id") @db.ObjectId
   firstName     String
   internalTeam  String
   jobRole       String?
   lastName      String
-  userId        String?          @unique @map("id") @db.ObjectId
-  myUsers       UserSegment[]   
-  // myUsers       User[]          @relation(fields: [id], references:[id])
+  myUsers       usersegment[]
+  profilephoto  String?
   phoneNumber   String?
   pronouns      String?
   region        String?
-  segmentEmail  String          @unique
-  slackName     String          @unique
-  team          String
-  twilioEmail   String          @unique
-  updatedAt     DateTime        @db.Date
-  workspaceId   String?         @unique
-  workspaceSlug String          @unique
+  segmentEmail  String
+  slackName     String
+  team          String?
+  twilioEmail   String
+  updatedAt     DateTime?     @db.Date
+  workspaceId   String?
+  workspaceSlug String?
 }
 
-model User {
-  id              String        @id @default(auto()) @map("_id") @db.ObjectId
-  v               Int?          @map("__v")
-  anonymousId     String[]    
-  createdAt       DateTime?     @db.Date
-  email           String        @unique
-  firstName       String
-  lastName        String
-  phoneNumber     String
-  userId          String?        @unique @map("id") @db.ObjectId
-  // profilePhoto    Profilephoto @relation(fields: [userId], references: [id])
-  profilePhoto    Profilephoto  @relation(fields: [id], references: [id])
-  segmenters      UserSegment[]  
-  // segmenters      Segmenter[]   @relation(fields: [id], references:[id])
-  // traits          UserTraits?
-  updatedAt       DateTime      @db.Date
-  username        String
+model user {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  v            Int?          @map("__v")
+  anonymousId  Json?
+  createdAt    DateTime?     @db.Date
+  email        String
+  firstName    String
+  lastName     String
+  phoneNumber  String?
+  profilePhoto userphoto[]
+  segmenters   usersegment[]
+  traits       Json?
+  updatedAt    DateTime?     @db.Date
+  userId       String?       @unique @map("id") @db.ObjectId
+  username     String
 }
 
-model UserSegment {
-  id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  segmenterId       String    @db.ObjectId    
-  segmenter         Segmenter @relation(fields: [segmenterId], references:[id])
+model usersegment {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  segmenteruserId String    @db.ObjectId
+  segmenter       segmenter @relation(fields: [segmenteruserId], references: [id])
 
-  userUserId        String    @db.ObjectId
-  user              User      @relation(fields:[userUserId], references:[id])
+  userUserId String @db.ObjectId
+  user       user   @relation(fields: [userUserId], references: [id])
+}
+
+model userphoto {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  profilephotoId String       @db.ObjectId
+  profilephoto   profilephoto @relation(fields: [profilephotoId], references: [id])
+
+  userUserId String @db.ObjectId
+  user       user   @relation(fields: [userUserId], references: [id])
 }

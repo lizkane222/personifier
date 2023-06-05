@@ -38,20 +38,20 @@ const OneSegmenter = (props) => {
 
     return(
         <div className='container flex w-full'>
-            <div className='d-inline-flex justify-content-space-evenly w-full margin-20'>
-                <div key={segmenter._id}>
-                    <h2>Name : {segmenter.firstName} {segmenter.lastName} ({segmenter.pronouns})</h2>
-                    <h4>Slack : {segmenter.slackName}</h4>
-                    <h4>Twilio Email : {segmenter.twilioEmail}</h4>
-                    <h4>Segment Email : {segmenter.segmentEmail}</h4>
-                    <h4>Segment Team : {segmenter.team}</h4>
-                    <h4>Internal Team : {segmenter.internalTeam}</h4>
-                    <h4>Job Role : {segmenter.jobRole}</h4>
-                    <h4>Region : {segmenter.region}</h4>
-                    <h4>Workspace Slug : {segmenter.workspaceSlug}</h4>
-                    <h4>Workspace ID : {segmenter.workspaceId}</h4>
-                    <h4>Pronouns : {segmenter.pronouns}</h4>
-                    <h4>Phone Number : {segmenter.phoneNumber}</h4>
+            <div className='d-inline-flex  w-full margin-15'>
+                <div key={segmenter._id} className='w-100'>
+                    <h2 className='w-full'>Name : {segmenter.firstName} {segmenter.lastName} ({segmenter.pronouns})</h2>
+                    <h4 className='w-full'>Slack : {segmenter.slackName}</h4>
+                    <h4 className='w-full'>Twilio Email : {segmenter.twilioEmail}</h4>
+                    <h4 className='w-full'>Segment Email : {segmenter.segmentEmail}</h4>
+                    <h4 className='w-full'>Segment Team : {segmenter.team}</h4>
+                    <h4 className='w-full'>Internal Team : {segmenter.internalTeam}</h4>
+                    <h4 className='w-full'>Job Role : {segmenter.jobRole}</h4>
+                    <h4 className='w-full'>Region : {segmenter.region}</h4>
+                    <h4 className='w-full'>Workspace Slug : {segmenter.workspaceSlug}</h4>
+                    <h4 className='w-full'>Workspace ID : {segmenter.workspaceId}</h4>
+                    <h4 className='w-full'>Pronouns : {segmenter.pronouns}</h4>
+                    <h4 className='w-full'>Phone Number : {segmenter.phoneNumber}</h4>
                     {/* <Link className='btn btn-secondary' to={`/segmenter/${segmenter._id}`}>View User</Link> */}
                     <Link className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2' to={`/segmenters/`}>Segmenters</Link>
                     <Link className='px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2' to={`/editSegmenter/${segmenter._id}`}>Edit</Link>

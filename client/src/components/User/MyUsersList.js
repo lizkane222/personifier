@@ -41,7 +41,7 @@ const MyUsersList = (props) => {
 
     return(
         <div >
-            <div className='d-flex justify-content-around flex-wrap'>
+            <div className='flex justify-content-around flex-wrap'>
                 {userList.map((user) => (
                         <div className='userCard' key={user._id}>
                             <h2>Name : {user.firstName} {user.lastName}</h2>

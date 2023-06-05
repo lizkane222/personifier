@@ -9,6 +9,7 @@
       name="description"
       content="Web site created using create-react-app"
     />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     
     <!-- * Bootstrap CDN for CSS Only -->
@@ -32,6 +33,10 @@
     <title>Personifier</title>
   </head>
   <body>
+    <script>
+      // Add the X-Frame-Options: allow-from header
+      //document.head.querySelector('meta[name="X-Frame-Options"]').content = 'allow-from https://backstage.segmentops.com/search?query=';
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
